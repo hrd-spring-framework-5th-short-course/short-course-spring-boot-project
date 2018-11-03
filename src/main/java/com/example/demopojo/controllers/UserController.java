@@ -9,9 +9,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 //@Component
 @Controller
@@ -55,13 +61,29 @@ public class UserController {
 
 
     @PostMapping("/users/add/submit")
-    public String submitUser(@Valid User user, BindingResult bindingResult)
+    public String submitUser(@Valid User user, @RequestParam("my-file") MultipartFile file, BindingResult bindingResult)
     {
 
         if (bindingResult.hasErrors()) {
 
             System.out.println("Error occur!");
             return "add-user";
+        }
+
+        String filename = file.getOriginalFilename();
+        String extension = filename.substring(filename.lastIndexOf('.') + 1);
+        System.out.println(extension);
+
+        filename = UUID.randomUUID() + "." + extension;
+
+        System.out.println(filename);
+
+
+        try {
+            Files.copy(file.getInputStream(),
+                    Paths.get("/Users/ratanakphang/uploads/images/", file.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 

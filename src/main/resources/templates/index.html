@@ -35,15 +35,15 @@
 
 <!--<h1 style="color: red;" th:text="${userList}"></h1>-->
 
-<a href="/users/add" th:text="#{addnew}">Add new</a>
+<a href="/users/add" th:text="#{addnew}" class="btn btn-primary">Add new</a>
 
-<a href="?language=km">Khmer</a>
-<a href="?language=ko">Korean</a>
-<a href="?language=en">English</a>
+<a href="?lang=km" class="btn btn-danger">Khmer</a>
+<a href="?lang=en" class="btn btn-danger">English</a>
 <table class="table table-striped">
     <thead>
     <tr>
         <th scope="col" th:text="#{table.id}">#</th>
+        <th scope="col" th:text="#{table.profile}">Profile</th>
         <th scope="col" th:text="#{table.name}">Name</th>
         <th scope="col" th:text="#{table.gender}">Gender</th>
         <th scope="col" th:text="#{table.action}">Action</th>
@@ -52,6 +52,7 @@
     <tbody>
     <tr th:each="u : ${userList}">
         <th scope="row" th:text="${u.getId()}"></th>
+        <td>  Profile </td>
         <td th:text="${u.getName()}"></td>
         <td th:text="${u.getGender()}"></td>
         <td>

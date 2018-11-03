@@ -27,10 +27,12 @@ public class MultipleLanguageConfig implements WebMvcConfigurer {
         return sessionLocaleResolver;
     }
 
+
     @Bean
+    @Description("add change language parameter")
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("language");
+        interceptor.setParamName("lang");
 
         return interceptor;
     }

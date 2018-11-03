@@ -7,7 +7,7 @@
 <body>
     <h2 style="margin: 0 auto; width: 50%">Add New User Form</h2>
 
-    <form action="/users/add/submit" method="post" th:object="${user}">
+    <form action="/users/add/submit" method="post" th:object="${user}" enctype="multipart/form-data">
 
         ID: <input type="number" th:field="*{id}">
             <span style="color: red;" th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></span>
@@ -17,6 +17,8 @@
         <!--<span style="color: red;" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" >
             <div th:text="${err}"></div>
         </span>-->
+        <br>
+        Add Profile: <input type="file" name="my-file">
         <br>
         <select th:field="*{gender}">
             <option value="female">Female</option>

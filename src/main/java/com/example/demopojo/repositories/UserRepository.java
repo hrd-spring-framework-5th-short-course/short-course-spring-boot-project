@@ -14,10 +14,10 @@ public class UserRepository {
 
     List<User> userList = new ArrayList<>();
     {
-        userList.add(new User(1, faker.name().fullName(), "male"));
-        userList.add(new User(2, faker.name().fullName(), "male"));
-        userList.add(new User(3, faker.name().fullName(), "male"));
-        userList.add(new User(4, faker.name().fullName(), "female"));
+        userList.add(new User(1,faker.name().fullName(), faker.name().fullName(), "male"));
+        userList.add(new User(2, faker.name().fullName(), faker.name().fullName(), "male"));
+        userList.add(new User(3,faker.name().fullName(), faker.name().fullName(), "male"));
+        userList.add(new User(4,faker.name().fullName(), faker.name().fullName(), "female"));
     }
 
     public List<User> getAll() {
