@@ -6,7 +6,8 @@ import javax.validation.constraints.NotNull;
 
 public class User {
 
-    @NotNull(message = "Not null error custom!")
+//    @NotNull(message = "Not null error custom!")
+    @NotNull
     private Integer id;
 
 

@@ -10,7 +10,7 @@
     <form action="/users/add/submit" method="post" th:object="${user}">
 
         ID: <input type="number" th:field="*{id}">
-            <span style="color: red;" th:if="${#fields.hasErrors('id')}" th:text="${#fields.errors('id')[0]}" ></span>
+            <span style="color: red;" th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></span>
         <br>
         Name: <input type="text" th:field="*{name}">
         <span style="color: red;" th:if="${#fields.hasErrors('name')}" th:text="${#fields.errors('name')}" ></span>

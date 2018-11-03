@@ -35,16 +35,18 @@
 
 <!--<h1 style="color: red;" th:text="${userList}"></h1>-->
 
-<a href="/users/add">Add new</a>
+<a href="/users/add" th:text="#{addnew}">Add new</a>
 
-
+<a href="?language=km">Khmer</a>
+<a href="?language=ko">Korean</a>
+<a href="?language=en">English</a>
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Action</th>
+        <th scope="col" th:text="#{table.id}">#</th>
+        <th scope="col" th:text="#{table.name}">Name</th>
+        <th scope="col" th:text="#{table.gender}">Gender</th>
+        <th scope="col" th:text="#{table.action}">Action</th>
     </tr>
     </thead>
     <tbody>
