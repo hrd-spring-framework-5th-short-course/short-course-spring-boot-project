@@ -32,6 +32,12 @@ public class ProductController {
         return "product";
     }
 
+    @GetMapping("/product/one")
+    public String showOneProductForm(Model model) {
+        model.addAttribute("products", products);
+
+        return "product";
+    }
 
     @GetMapping("/product/add")
     public String showAddProductForm(Model model) {
@@ -39,6 +45,7 @@ public class ProductController {
         model.addAttribute("product", new Product());
         return "add-product";
     }
+
 
 
     @PostMapping("/product/add/submit")
