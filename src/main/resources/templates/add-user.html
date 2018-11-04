@@ -18,7 +18,12 @@
             <div th:text="${err}"></div>
         </span>-->
         <br>
-        Add Profile: <input type="file" name="my-file">
+        Add Profile: <input type="file" name="my-file" multiple="multiple">
+        <br>
+        Choose folder: <select name="folder">
+            <option value="user/">User Folder</option>
+            <option value="category/">Category Folder</option>
+        </select>
         <br>
         <select th:field="*{gender}">
             <option value="female">Female</option>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New User</title>
+</head>
+<body>
+    <h2 style="margin: 0 auto; width: 50%">Add New Product Form</h2>
+
+    <form action="/product/add/submit" method="post" th:object="${product}" enctype="multipart/form-data">
+
+        ID: <input type="number" th:field="*{id}">
+        <br>
+        Name: <input type="text" th:field="*{name}">
+        <br>
+        Price: <input type="text" th:field="*{price}">
+        <br>
+        Add Profile: <input type="file" name="my-file" multiple="multiple">
+        <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</body>
+</html>

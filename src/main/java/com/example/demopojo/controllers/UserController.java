@@ -1,7 +1,11 @@
 package com.example.demopojo.controllers;
 
 import com.example.demopojo.models.User;
+import com.example.demopojo.services.FileUploadService;
 import com.example.demopojo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,6 +29,9 @@ import java.util.UUID;
 public class UserController {
 
     private UserService userService;
+
+    @Autowired
+    private FileUploadService fileUploadService;
 
     //    @Autowired
     public UserController(UserService userService) {
@@ -61,7 +69,7 @@ public class UserController {
 
 
     @PostMapping("/users/add/submit")
-    public String submitUser(@Valid User user, @RequestParam("my-file") MultipartFile file, BindingResult bindingResult)
+    public String submitUser(@Valid User user, BindingResult bindingResult, @RequestParam("my-file") MultipartFile file,@RequestParam("folder") String folder)
     {
 
         if (bindingResult.hasErrors()) {
@@ -70,22 +78,11 @@ public class UserController {
             return "add-user";
         }
 
-        String filename = file.getOriginalFilename();
-        String extension = filename.substring(filename.lastIndexOf('.') + 1);
-        System.out.println(extension);
 
-        filename = UUID.randomUUID() + "." + extension;
-
-        System.out.println(filename);
+        String filename = this.fileUploadService.upload(file, folder);
 
 
-        try {
-            Files.copy(file.getInputStream(),
-                    Paths.get("/Users/ratanakphang/uploads/images/", file.getOriginalFilename()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        user.setProfile(filename);
 
         System.out.println(user);
 

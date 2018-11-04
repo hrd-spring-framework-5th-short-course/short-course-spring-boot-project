@@ -35,7 +35,7 @@
 
 <!--<h1 style="color: red;" th:text="${userList}"></h1>-->
 
-<a href="/users/add" th:text="#{addnew}" class="btn btn-primary">Add new</a>
+<a href="/product/add" th:text="#{addnew}" class="btn btn-primary">Add new</a>
 
 <a href="?lang=km" class="btn btn-danger">Khmer</a>
 <a href="?lang=en" class="btn btn-danger">English</a>
@@ -45,23 +45,19 @@
         <th scope="col" th:text="#{table.id}">#</th>
         <th scope="col" th:text="#{table.profile}">Profile</th>
         <th scope="col" th:text="#{table.name}">Name</th>
-        <th scope="col" th:text="#{table.gender}">Gender</th>
-        <th scope="col" th:text="#{table.action}">Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="u : ${userList}">
-        <th scope="row" th:text="${u.getId()}"></th>
+    <tr th:each="p : ${products}">
+        <th scope="row" th:text="${p.getId()}"></th>
         <td>
-            <img style="width: 75px; height: 75px; border: 1px solid red" th:src="|/images/${u.getProfile()}|" alt="">
+            <img th:each="proImage : ${p.getProImages()}"
+                 th:src="|/images/${proImage}|"
+                 style="width: 75px; height: 75px; border: 1px solid red ; margin-right: 5px;" alt="">
         </td>
-        <td th:text="${u.getName()}"></td>
-        <td th:text="${u.getGender()}"></td>
-        <td>
-            <a th:href="@{/users/one/{user_id}(user_id=${u.getId()})}">view</a>
-            <a th:href="@{/users/update/{id}(id=${u.getId()})}">update</a>
-            <button  th:attr="data-id=${u.getId()}" class="btn-delete btn btn-danger">Delete</button>
-        </td>
+        <td th:text="${p.getName()}"></td>
+        <td th:text="${p.getPrice()}"></td>
+
     </tr>
     </tbody>
 </table>
