@@ -20,11 +20,15 @@ public class UserRestController {
         this.userService = userService;
     }
 
+    @GetMapping("/{id}")
+    public User getOne(@PathVariable Integer id) {
+        return this.userService.getOne(id);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<User> getUser() {
         return userService.getAll();
     }
-
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public boolean addUser(@RequestBody User user) {
@@ -37,7 +41,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public boolean delete(@PathVariable("id") Integer id) {
+    public boolean delete(@PathVariable Integer id) {
         return this.userService.delete(id);
     }
 }
